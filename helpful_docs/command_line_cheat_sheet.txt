@@ -1,0 +1,46 @@
+# files:
+remove a file: rm <filename>
+remove a file: rm -r <folder>
+rename a file: mv <oldfilename> <newfilename>
+copy a file: cp <oldfilepath/*> <newfilepath>
+make directory: mkdir
+
+
+# navigating:
+to go back a folder in a directory: cd ..
+to go back multiple folders: cd ../../
+to reference current directory: ./
+see current file path: pwd
+to quit/kill a jupyter notebook: ctrl+c+c
+
+
+# searching:
+to look for files with a specific file extension: ls *.<extension>
+files that start with a specific phrase: ls <xx>*
+files that contain a specific phrase: ls *<xx>*
+
+
+
+# Copy file from a server onto desktop:
+1. Open terminal and navigate to the folder on my local desktop that I want to copy to
+2. use command ‘scp’ with the file path on the server followed by the local file path
+		example: 
+		> cd ~/Desktop
+		scp dervlamk@rossby.geo.arizona.edu:~/scripts/test_fig.png ~/Desktop/
+
+
+# emacs editor
+ctrl+x+s = save
+ctrl+x+c = exit
+
+
+# Vim editor
+- i = insert (edit mode)
+- esc = exit insert mode
+- :wq = save & quit (add ! to over-ride read only)
+- q = quit without saving
+
+
+Misc. Info
+absolute path - universal
+relative path - points at a path based on current directory
