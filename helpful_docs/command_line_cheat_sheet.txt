@@ -41,6 +41,6 @@ ctrl+x+c = exit
 - q = quit without saving
 
 
-Misc. Info
+# Misc. Info
 absolute path - universal
 relative path - points at a path based on current directory
