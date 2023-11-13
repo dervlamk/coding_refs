@@ -14,3 +14,6 @@ python -m ipykernel install --user --name <env_name> --display-name "Python (<en
 
 # deactivate the environment:
 conda deactivate <env_name>
+
+# if you want to add packages to the environment after the fact, activate the environment then issue the command:
+conda install -c conda-forge <package_name>
