@@ -1,0 +1,23 @@
+name: climate
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - xarray
+  - netcdf4
+  - cartopy
+  - ncview
+  - nco
+  - cdo
+  - bottleneck
+  - ipykernel
+  - matplotlib
+  - cmocean
+  - colorcet
+  - palettable
+  - metpy
+  - seaborn
+  - numpy-indexed
+  - rioxarray
+  - rasterio
