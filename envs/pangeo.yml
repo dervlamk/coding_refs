@@ -1,0 +1,23 @@
+name: pangeo
+channels: 
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - ipykernel
+  - numpy 
+  - xarray
+  - netcdf4
+  - pandas
+  - cartopy
+  - dask
+  - bottleneck
+  - intake
+  - intake-esm
+  - fsspec
+  - aiohttp
+  - zarr
+  - seaborn
+  - tqdm
+  - gcsfs
+  - xmip
