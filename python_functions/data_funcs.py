@@ -41,66 +41,66 @@ def get_season(season='ann'):
         pass
     return mons
 
-def longitude_flip(var,how):
-    """
-    Convert longitude values from the -180:180 to 0:360 convention or vice versa.
+def longitude_flip(var):
+    """ Convert longitude values from the -180:180 to 0:360 convention or vice versa.
         
-    Notes
-    ----------
-    Only works for global data. Do not apply to data with a clipped longitude range
+        ** Only works for global data. Do not apply to data with a clipped longitude range **
         
-    Parameters
-    ----------
-    var : Data Array
-    how : 180 or 360
-            how==180 will convert 0:360 longitudes to -180:180 longitudes
-            how==360 will convert -180:180 longitudes to 0:360 longitudes 
+        Parameters
+        ----------
+        var : Data Array
     """    
     # get var info
-    x,_=get_xy_coords(var)
-    lon_name=x.name
-    # FLIP LONGITUDES FROM 0:360 to -180:180
-    if how==180:
-        # if negative longitudes already exist, no need to flip them
-        if min(x)<0:
-            print('Longitudes are likely already in -180:180 format.\n', x)
-        # otherwise flip longitudes
-        elif min(x)>=0:
-            # determine the number of values in the original longitude coord
-            nx=len(x)
-            # shift the data by 180°
-            nshift=nx//2
-            var=var.roll({lon_name: nshift}, roll_coords=False)
-            # create an array of longitudes spanning -180:180 with the same length as original longitude coord 
-            new_lons=np.linspace((min(x)-180), (max(x)-180), nx)
-            # update longitude coord with new values
-            var=var.assign_coords({lon_name: new_lons})
-            # add attributes documenting change
-            timestamp=datetime.now().strftime("%B %d, %Y, %r")
-            var.attrs['history']=f'{timestamp} flipped longitude convention from 0°:360° to -180°:180°'
-            var.attrs['original_lons']=x.values
-            return(var)
-    # FLIP LONGITUDES FROM -180:180 to 0:360
-    if how==360:
-        # if all longitudes are already greater than 0, no need to flip them
-        if min(x)>=0:
-            print('Longitudes are likely already in 0:360 format. Double check your input:\n', x)
-        # otherwise flip longitudes
-        elif min(x)<0:
-            # determine the number of values in the original longitude coord
-            nx=len(x)
-            # shift the data by 180° of longitude
-            nshift=nx//2
-            var=var.roll({lon_name: nshift}, roll_coords=False)
-            # create an array of longitudes spanning 0:360 with the same length as original longitude coord 
-            new_lons=np.linspace((min(x)+180), (max(x)+180), nx)
-            # update longitude coord with new values
-            var=var.assign_coords({lon_name: new_lons})
-            # add attributes documenting change
-            timestamp=datetime.now().strftime("%B %d, %Y, %r")
-            var.attrs['history']=f'{timestamp} flipped longitude convention from -180°:180° to 0°:360°'
-            var.attrs['original_lons']=x.values
-            return(var)
+    x,_=get_xy_coords(var) # extract original longitude values
+    lon_name=x.name        # store name of longitude coordinate
+    nx=len(x)              # longitude resolution
+    
+    # determine longitude format and create an array of new lons in opposite convention
+    if min(x)<0: 
+        # if there are negative values, data is -180:180 and need to switch to 0:360
+        new_lons=np.linspace((min(x)+180), (max(x)+180), nx)
+    elif max(x)>180:
+        # if the max value is >180, data is in 0:360 format and need to switch to -180:180
+        new_lons=np.linspace((min(x)-180), (max(x)-180), nx)
+        
+    # shift the data by 180° of longitude
+    nshift=nx//2
+    var=var.roll({lon_name: nshift}, roll_coords=False)
+            
+    # update longitude coord with new values
+    var=var.assign_coords({lon_name: new_lons})
+    
+    # add attributes documenting change
+    timestamp=datetime.now().strftime("%B %d, %Y, %r")
+    var.attrs['history']=f'flipped longitudes {timestamp}'
+    var.attrs['original_lons']=x.values
+    
+    return(var)
+
+def regrid_like(ref, var):
+    """
+    Regrid data to match a reference 
+    ** Only works for global data **
+    
+    Parameters
+    ----------
+    ref : reference array
+    var : variable array to regrid
+    """ 
+    x_ref,y_ref=get_xy_coords(ref) # lat lon coords from reference variable
+    x_var,_=get_xy_coords(var) # lat lon coords from variable to be regridded
+    
+    # if longitudes are referenced differently, flip lons of variable
+    if np.sign(min(x_ref)) != np.sign(min(x_var)):
+        var=longitude_flip(var)
+        x_var,y_var=get_xy_coords(var)
+    
+    # rename coordinates to match reference
+    var=var.rename({x_var.name:x_ref.name, y_var.name:y_ref.name})
+    
+    # interpolate var data
+    var_regridded=var.interp_like(ref, method='linear')
+    return(var_regridded)
 
 def latitude_weighted_mean(var):
     """
