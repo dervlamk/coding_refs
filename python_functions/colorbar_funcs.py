@@ -118,7 +118,7 @@ def get_settings(field=None, diff=False):
             vmax=50
             lvls=21
     
-    if field in ['sh', 'Q', 'QV', 'specific_humidity']:
+    if field in ['sh', 'qv', 'q', 'Q', 'QV', 'specific_humidity']:
         if diff==False:
             cmap=clip_cmap(cmocean.cm.delta_r, 0.5, 1.0)
             vmin=0
