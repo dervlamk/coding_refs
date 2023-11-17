@@ -82,7 +82,7 @@ def get_settings(field=None, diff=False):
             vmax=5
             lvls=11
     
-    if field in ['sfc_wind_speed', 'sfcWind', 'sfcwind', 'sfc_wind', 'wsurf']:
+    if field in ['sfc_wind_speed', 'sfcWind', 'sfcwind', 'sfc_wind', 'wsurf', 'windSpd', 'wind']:
         if diff==False:
             cmap=cmocean.cm.matter_r
             vmin=4
