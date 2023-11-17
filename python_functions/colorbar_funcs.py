@@ -153,44 +153,44 @@ def get_settings(field=None, diff=False):
             vmin=-5e-05
             vmax=5e-05
             lvls=21
-    """
+    
     if field in ['omega', 'w']:
         if diff==False:
             cmap=cmocean.cm.curl
-            vmin=
-            vmax=
-            lvls=
+            vmin=-0.1
+            vmax=0.1
+            lvls=21
         if diff==True:
-            cmap=cmocean.cm.curl_r
-            vmin=
-            vmax=
-            lvls=
+            cmap=cmocean.cm.curl
+            vmin=-0.05
+            vmax=0.05
+            lvls=21
     
     if field in ['lh_flux', 'LH', 'lhf']:
         if diff==False:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=cmocean.cm.amp
+            vmin=0
+            vmax=300
+            lvls=16
         if diff==True:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=plt.colormaps['RdBu_r']
+            vmin=-100
+            vmax=100
+            lvls=21
     
     if field in ['sh_flux', 'SH', 'shf']:
         if diff==False:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=plt.colormaps['RdBu_r']
+            vmin=-100
+            vmax=100
+            lvls=21
         if diff==True:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=plt.colormaps['RdBu_r']
+            vmin=-20
+            vmax=20
+            lvls=21
     
-    if field in ['cloud', 'cloud_frac', 'fcloud']:
+    if field in ['cloud', 'cloud_frac', 'fcloud', 'pcldl', 'pcldm', 'pcldh', 'pcldt']:
         if diff==False:
             cmap=cmocean.cm.ice
             vmin=0
@@ -204,39 +204,39 @@ def get_settings(field=None, diff=False):
     
     if field in ['sw_flux', 'sw_toa', 'swcrf']:
         if diff==False:
-            cmap=combine_cmaps(cmocean.cm.gray, cmocean.cm.amp, range_low=[.1,.95], range_up=[0,.95], n_low=128, n_up=128)
-            vmin=
-            vmax=
-            lvls=
+            cmap=cmocean.cm.thermal_r
+            vmin=-100
+            vmax=0
+            lvls=21
         if diff==True:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=combine_cmaps(cmocean.cm.gray, cmocean.cm.amp, range_low=[.1,.95], range_up=[0,.95], n_low=128, n_up=128)
+            vmin=-50
+            vmax=50
+            lvls=21
     
     if field in ['lw_flux', 'lw_toa', 'lwcrf']:
         if diff==False:
-            cmap=combine_cmaps(plt.colormaps['bone'], cmocean.cm.amp, range_low=[.1,.95], range_up=[0,.95], n_low=128, n_up=128)
-            vmin=
-            vmax=
-            lvls=
+            cmap=cmocean.cm.thermal
+            vmin=0
+            vmax=100
+            lvls=21
         if diff==True:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
-    
+            cmap=combine_cmaps(plt.colormaps['bone'], cmocean.cm.amp, range_low=[.1,.95], range_up=[0,.95], n_low=128, n_up=128)
+            vmin=-50
+            vmax=50
+            lvls=21
+
     if field in ['slp', 'pressure']:
         if diff==False:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=plt.colormaps['RdBu']
+            vmin=975
+            vmax=1025
+            lvls=11
         if diff==True:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=plt.colormaps['RdBu']
+            vmin=-10
+            vmax=10
+            lvls=11
     
     if field in ['z200', 'z700', 'z_200', 'z_700', 'stationary_wave']:
         if diff==False:
@@ -250,7 +250,6 @@ def get_settings(field=None, diff=False):
             vmax=30
             lvls=21
     
-    """
     ##########################
     #   +++ OCEAN VARS +++   
     ####                        
@@ -281,49 +280,48 @@ def get_settings(field=None, diff=False):
     if field in ['ocean_streamfunction', 'sf_Atl', 'sf_atl', 'sf_pac', 'sf_ind', 'sf_Pac', 'sf_Ind', 'sf_ocn']:
         if diff==False:
             cmap=plt.colormaps['YlGnBu']
-            vmin=0
-            vmax=25
-            lvls=26
-        if diff==True:
-            cmap=cmocean.cm.balance
-            vmin=-5
-            vmax=5
+            vmin=-10
+            vmax=30
             lvls=21
-    """
+        if diff==True:
+            cmap=cmocean.cm.delta_r
+            vmin=-20
+            vmax=20
+            lvls=21
+
     ##########################
     #   +++ OTHER VARS +++   
     #### 
-
-    if field in ['topo_real', 'topo', 'topography', 'surface_height']:
+    if field in ['topo_real', 'topo', 'topography', 'surface_height', 'zatmo', 'zsurf']:
         if diff==False:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=clip_cmap(cmocean.cm.topo, 0.5, 1.0)
+            vmin=0
+            vmax=5000
+            lvls=26
         if diff==True:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=combine_cmaps(plt.colormaps['twilight_shifted'], plt.colormaps['afmhot_r'], range_low=[0,0.5], range_up=[0,1.0], n_low=128, n_up=128)
+            vmin=-2000
+            vmax=2000
+            lvls=21
 
-    if field in ['bathymetry', 'bathy']:
+    if field in ['bathymetry', 'bathy', 'depth']:
         if diff==False:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
+            cmap=cmocean.cm.deep_r
+            vmin=-4000
+            vmax=0
+            lvls=21
         if diff==True:
-            cmap=
-            vmin=
-            vmax=
-            lvls=
-    """
-
+            cmap=cmocean.cm.diff
+            vmin=-1000
+            vmax=1000
+            lvls=21
+    
+    else:
+        print('Field not recognized')
+    
     # save output
     levels = np.linspace(vmin, vmax, lvls)
     norm = mpl.colors.BoundaryNorm(levels, cmap.N)
     cf = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
     return(cmap, vmin, vmax, cf)
-
-    else:
-         print('Error: field not recognized')
+    
