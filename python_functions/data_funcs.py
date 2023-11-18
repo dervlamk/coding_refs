@@ -24,19 +24,22 @@ def get_season(season='ann'):
     Index months to average over to derive an annual or seasonal mean
         - can only be applied to monthly climatologies
     """
-    mons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     if season in ['ANNUAL', 'ANN', 'ann']:
         mons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     if season in ['DJF', 'djf']:
         mons = [0, 1, 11]
+    if season in ['JFM', 'jfm']:
+        mons = [0, 1, 2]
+    if season in ['MAM', 'mam']:
+        mons = [2, 3, 4]
     if season in ['JJA', 'jja']:
         mons = [5, 6, 7]
     if season in ['JJAS', 'jjas']:
         mons = [5, 6, 7, 8]
-    if season in ['JFM', 'jfm']:
-        mons = [0, 1, 2]
     if season in ['JAS', 'jas']:
         mons = [6, 7, 8]
+    if season in ['SON', 'son']:
+        mons = [8, 9, 10]
     if season==None:
         pass
     return mons

@@ -39,6 +39,21 @@ def combine_cmaps(cmap_low, cmap_up, range_low=[0,1], range_up=[0,1], n_low=128,
 
 ###
 
+def combine_cmaps_white_center(cmap_low, cmap_up, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128, n_white=3):
+    """
+    Stack two colormaps to form a new diverging colormap with a white center point
+    """
+    # use the range values to determine the fraction of the original cmap to clip off and sample n colors from new range
+    lower_colors = cmap_low(np.linspace(range_low[0], range_low[1], n_low))
+    upper_colors = cmap_up(np.linspace(range_up[0], range_up[1], n_up))
+    white_space = [(1,1,1,1)]*n_white
+    # combine them and build a new colormap
+    colors = np.vstack((lower_colors, white_space, upper_colors))
+    new_cmap = mcolors.LinearSegmentedColormap.from_list('new_cmap', colors)
+    return(new_cmap)
+
+###
+
 def get_settings(field=None, diff=False):
     """
     Determines bounds, levels, and colormap for various climate model fields
@@ -48,60 +63,72 @@ def get_settings(field=None, diff=False):
     #### 
     if field in ['prec', 'precip', 'precipiation']:
         if diff==False:
-            cmap=plt.colormaps['Blues']
+            cmap=cm.Blues
             vmin=0
             vmax=10
             lvls=21
         if diff==True:
-            cmap=combine_cmaps(plt.colormaps['BrBG'], plt.colormaps['Blues'], range_low=[0,.5], range_up=[0,.95], n_low=128, n_up=128)
+            cmap=combine_cmaps(cm.BrBG, cm.Blues, range_low=[0,.5], range_up=[0,.95], n_low=128, n_up=128)
             vmin=-6
             vmax=6
             lvls=25
 
     if field in ['ts', 'tsurf', 't', 'temp', 'temperature']:
         if diff==False:
-            cmap=plt.colormaps['RdYlBu_r']
+            cmap=cm.RdYlBu_r
             vmin=-30
             vmax=30
             lvls=21
         if diff==True:
-            cmap=plt.colormaps['RdBu_r']
+            cmap=cm.RdBu_r
             vmin=-10
             vmax=10
             lvls=21
 
     if field in ['u', 'U', 'uwind', 'usurf', 'v', 'V', 'vwind', 'vsurf']:
         if diff==False:
-            cmap=combine_cmaps(plt.colormaps['YlOrBr_r'], plt.colormaps['BuPu'], range_low=[0,1], range_up=[0,1], n_low=128, n_up=128)
+            cmap=combine_cmaps(cm.YlOrBr_r, cm.BuPu, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128)
             vmin=-10
             vmax=10
             lvls=21
         if diff==True:
-            cmap=plt.colormaps['RdBu_r']
+            cmap=cm.RdBu_r
             vmin=-5
             vmax=5
             lvls=11
     
-    if field in ['sfc_wind_speed', 'sfcWind', 'sfcwind', 'sfc_wind', 'wsurf', 'windSpd', 'wind']:
+    if field in ['sfc_wind_speed', 'sfcWind', 'sfcwind', 'sfc_wind', 'wsurf']:
         if diff==False:
             cmap=cmocean.cm.matter_r
-            vmin=4
-            vmax=11
-            lvls=31
+            vmin=0
+            vmax=10
+            lvls=21
         if diff==True:
-            cmap=plt.colormaps['RdBu_r']
+            cmap=cm.RdBu
+            vmin=-5
+            vmax=5
+            lvls=21
+
+    if field in ['wind', 'windSpd', 'windspeed', 'windSpeed']:
+        if diff==False:
+            cmap=cmocean.cm.matter_r
+            vmin=5
+            vmax=45
+            lvls=21
+        if diff==True:
+            cmap=cm.RdBu
             vmin=-10
             vmax=10
             lvls=21
     
     if field in ['mfc', 'moist_flux_convergence', 'mfcvg', 'mf_cvg', 'vimfc']:
         if diff==False:
-            cmap=combine_cmaps(plt.colormaps['YlOrBr_r'], cmocean.cm.tempo_r, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128) 
+            cmap=combine_cmaps(cm.YlOrBr_r, cmocean.cm.tempo, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128) 
             vmin=-0.00006
             vmax=0.00006
             lvls=25
         if diff==True:
-            cmap=combine_cmaps(plt.colormaps['YlOrBr_r'], cmocean.cm.tempo_r, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128)
+            cmap=combine_cmaps(cm.YlOrBr_r, cmocean.cm.tempo, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128)
             vmin=-0.00004
             vmax=0.00004
             lvls=17
@@ -113,43 +140,43 @@ def get_settings(field=None, diff=False):
             vmax=100
             lvls=21
         if diff==True:
-            cmap=combine_cmaps(plt.colormaps['BrBG'], cmocean.cm.delta_r, range_low=[0,0.45], range_up=[0.52,1.0], n_low=128, n_up=128)
+            cmap=combine_cmaps(cm.BrBG, cm.Blues, range_low=[0,.5], range_up=[0,.95], n_low=128, n_up=128)
             vmin=-50
             vmax=50
             lvls=21
     
-    if field in ['sh', 'qv', 'q', 'Q', 'QV', 'specific_humidity']:
+    if field in ['qv', 'q', 'Q', 'QV', 'specific_humidity']:
         if diff==False:
             cmap=clip_cmap(cmocean.cm.delta_r, 0.5, 1.0)
             vmin=0
-            vmax=100
+            vmax=0.1
             lvls=21
         if diff==True:
-            cmap=combine_cmaps(plt.colormaps['BrBG'], cmocean.cm.delta_r, range_low=[0,0.45], range_up=[0.52,1.0], n_low=128, n_up=128)
-            vmin=-50
-            vmax=50
-            lvls=21
+            cmap=combine_cmaps_white_center(cm.BrBG, cmocean.cm.delta_r, range_low=[0,0.5], range_up=[0.51,1.0], n_low=128, n_up=128, n_white=3)
+            vmin=-0.015
+            vmax=0.015
+            lvls=31
     
     if field in ['cvg', 'convergence']:
         if diff==False:
-            cmap=['RdBu']
+            cmap=cm.RdBu
             vmin=-5e-05
             vmax=5e-05
             lvls=21
         if diff==True:
-            cmap=['RdBu']
+            cmap=cm.RdBu
             vmin=-5e-06
             vmax=5e-06
             lvls=21
     
     if field in ['div', 'dvg', 'divergence']:
         if diff==False:
-            cmap=['RdBu_r']
+            cmap=cm.RdBu_r
             vmin=-5e-05
             vmax=5e-05
             lvls=21
         if diff==True:
-            cmap=['RdBu_r']
+            cmap=cm.RdBu_r
             vmin=-5e-05
             vmax=5e-05
             lvls=21
@@ -173,19 +200,19 @@ def get_settings(field=None, diff=False):
             vmax=300
             lvls=16
         if diff==True:
-            cmap=plt.colormaps['RdBu_r']
-            vmin=-100
-            vmax=100
+            cmap=cm.RdBu_r
+            vmin=-50
+            vmax=50
             lvls=21
     
     if field in ['sh_flux', 'SH', 'shf']:
         if diff==False:
-            cmap=plt.colormaps['RdBu_r']
+            cmap=cm.RdBu_r
             vmin=-100
             vmax=100
             lvls=21
         if diff==True:
-            cmap=plt.colormaps['RdBu_r']
+            cmap=cm.RdBu_r
             vmin=-20
             vmax=20
             lvls=21
@@ -221,31 +248,31 @@ def get_settings(field=None, diff=False):
             vmax=100
             lvls=21
         if diff==True:
-            cmap=combine_cmaps(plt.colormaps['bone'], cmocean.cm.amp, range_low=[.1,.95], range_up=[0,.95], n_low=128, n_up=128)
+            cmap=combine_cmaps(cm.bone, cmocean.cm.amp, range_low=[.1,.95], range_up=[0,.95], n_low=128, n_up=128)
             vmin=-50
             vmax=50
             lvls=21
 
     if field in ['slp', 'pressure']:
         if diff==False:
-            cmap=plt.colormaps['RdBu']
+            cmap=cm.RdBu
             vmin=975
             vmax=1025
             lvls=11
         if diff==True:
-            cmap=plt.colormaps['RdBu']
+            cmap=cm.RdBu
             vmin=-10
             vmax=10
             lvls=11
     
     if field in ['z200', 'z700', 'z_200', 'z_700', 'stationary_wave']:
         if diff==False:
-            cmap=plt.colormaps['seismic']
+            cmap=cm.seismic
             vmin=-150
             vmax=150
             lvls=31
         if diff==True:
-            cmap=plt.colormaps['seismic']
+            cmap=cm.seismic
             vmin=-30
             vmax=30
             lvls=21
@@ -255,12 +282,12 @@ def get_settings(field=None, diff=False):
     ####                        
     if field in ['sst', 'SST', 'sea_surface_temperature', 'sea_surface_temp']:
         if diff==False:
-            cmap=plt.colormaps['RdYlBu_r']
+            cmap=cm.RdYlBu_r
             vmin=-5
             vmax=30
             lvls=36
         if diff==True:
-            cmap=plt.colormaps['RdBu_r']
+            cmap=cm.RdBu_r
             vmin=-10
             vmax=10
             lvls=21
@@ -272,14 +299,14 @@ def get_settings(field=None, diff=False):
             vmax=100
             lvls=26
         if diff==True:
-            cmap=plt.colormaps['RdBu']
+            cmap=cm.RdBu
             vmin=-50
             vmax=50
             lvls=26
     
     if field in ['ocean_streamfunction', 'sf_Atl', 'sf_atl', 'sf_pac', 'sf_ind', 'sf_Pac', 'sf_Ind', 'sf_ocn']:
         if diff==False:
-            cmap=plt.colormaps['YlGnBu']
+            cmap=cm.YlGnBu
             vmin=-10
             vmax=30
             lvls=21
@@ -299,7 +326,7 @@ def get_settings(field=None, diff=False):
             vmax=5000
             lvls=26
         if diff==True:
-            cmap=combine_cmaps(plt.colormaps['twilight_shifted'], plt.colormaps['afmhot_r'], range_low=[0,0.5], range_up=[0,1.0], n_low=128, n_up=128)
+            cmap=combine_cmaps(cm.twilight_shifted, cm.afmhot_r, range_low=[0,0.5], range_up=[0,1.0], n_low=128, n_up=128)
             vmin=-2000
             vmax=2000
             lvls=21
@@ -315,9 +342,6 @@ def get_settings(field=None, diff=False):
             vmin=-1000
             vmax=1000
             lvls=21
-    
-    else:
-        print('Field not recognized')
     
     # save output
     levels = np.linspace(vmin, vmax, lvls)
