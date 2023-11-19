@@ -28,6 +28,16 @@ def clip_cmap(cmap, l_bnd, u_bnd):
 def combine_cmaps(cmap_low, cmap_up, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128):
     """
     Stack two colormaps to form a new colormap
+    - Use the same value for n_low and n_up to create an centered colormap
+
+    Parameters
+    ----------
+    cmap_low = lower colors
+    cmap_up = upper colors
+    range_low = fraction of lower colormap to clip, use [0,1] to keep full range
+    range_up = fraction of upper colormap to clip, use [0,1] to keep full range
+    n_low = number of colors to segment lower colormap into
+    n_up = number of colors to segment upper colormap into
     """
     # use the range values to determine the fraction of the original cmap to clip off and sample n colors from new range
     lower_colors = cmap_low(np.linspace(range_low[0], range_low[1], n_low))
@@ -42,6 +52,16 @@ def combine_cmaps(cmap_low, cmap_up, range_low=[0,1], range_up=[0,1], n_low=128,
 def combine_cmaps_white_center(cmap_low, cmap_up, range_low=[0,1], range_up=[0,1], n_low=128, n_up=128, n_white=3):
     """
     Stack two colormaps to form a new diverging colormap with a white center point
+    
+    Parameters
+    ----------
+    cmap_low = lower colors
+    cmap_up = upper colors
+    range_low = fraction of lower colormap to clip, use [0,1] to keep full range
+    range_up = fraction of upper colormap to clip, use [0,1] to keep full range
+    n_low = number of colors to segment lower colormap into
+    n_up = number of colors to segment upper colormap into
+    n_white = number of white segments in the colormap. Not sure what the optimal value is, been using 3
     """
     # use the range values to determine the fraction of the original cmap to clip off and sample n colors from new range
     lower_colors = cmap_low(np.linspace(range_low[0], range_low[1], n_low))
