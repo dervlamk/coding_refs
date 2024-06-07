@@ -95,7 +95,6 @@ To copy an entire directory, need to specify recursive copy:
 ```
 scp -r dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/' ./
 ```
-
 <br>
 <br>
 <br>
