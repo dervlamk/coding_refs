@@ -1,4 +1,6 @@
-# How to create a conda environment from a .yml file in terminal
+# Working with conda environments
+
+## How to create a conda environment from a .yml file
 first create a new .yml file (I use visual studio code for this) and save it in your anaconda envs directory: `~/opt/anaconda3/envs`
 <br>
 **Example .yml file:**
