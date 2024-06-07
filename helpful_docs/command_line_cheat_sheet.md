@@ -14,6 +14,7 @@ make directory: 	`mkdir <DIRECTORY_NAME>`
 update file: 		`touch <FILE_NAME>`
 <br>
 <br>
+<br>
 
 # navigating:
 go back 1 folder in a directory: 	`cd ..`
@@ -29,9 +30,9 @@ see current file path: 			`pwd`
 to quit/kill a jupyter notebook: 	`ctrl+c+c`
 <br>
 <br>
+<br>
 
 # searching:
-
 ## viewing files and subdirectories within a directory
 list all contents of a directory: 			`ls`
 <br> 
@@ -70,6 +71,7 @@ get line numbers that contain a given string in a specific file: `grep -n "<PATT
 search for a string, ignoring case, across all files of a certain type: `grep -i -n <PATTERN_TO_MATCH> *.<EXT>`
 <br>
 <br>
+<br>
 
 # Copy file from a server onto desktop:
 1. Open terminal and navigate to the folder on my local desktop that I want to copy to
@@ -96,6 +98,7 @@ scp -r dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/' ./
 
 <br>
 <br>
+<br>
 
 # Misc. Info
 to quit/kill current command: 		`ctrl+c`
@@ -111,6 +114,7 @@ delete from cursor to start of line: 	`ctrl+u`
 absolute path - universal
 <br>
 relative path - points at a path based on current directory
+<br>
 <br>
 <br>
 
