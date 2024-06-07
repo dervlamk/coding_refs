@@ -17,7 +17,7 @@ Horizontal Line: --- or ***
 
 ### +++ TEXT FORMATTING +++ ###
 *Italic*
-**bold*
+**bold**
 _underscore_
 ~~strikethrough~~
 
