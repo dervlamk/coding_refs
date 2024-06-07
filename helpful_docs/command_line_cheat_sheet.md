@@ -12,9 +12,8 @@ copy a directory: 		`cp -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 make directory: 	`mkdir <DIRECTORY_NAME>`
 <br>
 update file: 		`touch <FILE_NAME>`
-
-
-
+<br>
+<br>
 # navigating:
 go back 1 folder in a directory: 	`cd ..`
 <br>
@@ -27,9 +26,8 @@ reference home folder: 			`~/`
 see current file path: 			`pwd`
 <br>
 to quit/kill a jupyter notebook: 	`ctrl+c+c`
-
-
-
+<br>
+<br>
 # searching:
 
 ## viewing files and subdirectories within a directory
@@ -68,9 +66,8 @@ display filenames that contain a given string/pattern: `grep -l "<PATTERN_TO_MAT
 get line numbers that contain a given string in a specific file: `grep -n "<PATTERN_TO_MATCH>" <FILE_NAME>`
 <br>
 search for a string, ignoring case, across all files of a certain type: `grep -i -n <PATTERN_TO_MATCH> *.<EXT>`
-
-
-
+<br>
+<br>
 # Copy file from a server onto desktop:
 1. Open terminal and navigate to the folder on my local desktop that I want to copy to
 2. use command ‘scp’ with the file path on the server followed by the local file path
@@ -93,9 +90,8 @@ To copy an entire directory, need to specify recursive copy:
 ```
 scp -r dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/' ./
 ```
-
-
-
+<br>
+<br>
 # Misc. Info
 to quit/kill current command: 		`ctrl+c`
 <br>
@@ -110,9 +106,8 @@ delete from cursor to start of line: 	`ctrl+u`
 absolute path - universal
 <br>
 relative path - points at a path based on current directory
-
-
-
+<br>
+<br>
 # Vim editor
 *(This editor opens files in read-only mode)*
 <br>
@@ -136,9 +131,8 @@ delete all instances of a pattern: 			`:%s/<string>//g`
 <br>
 delete all instances of a pattern with confirmation: 	`:%s/<string>//gc`
 <br>
-
-
-
+<br>
+<br>
 # emacs editor
 save: `ctrl+x+s`
 <br>
