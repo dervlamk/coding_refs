@@ -42,12 +42,14 @@ can compound multiple searches:				`ls <xx>*<xx>*.<extension>`
 # Copy file from a server onto desktop:
 1. Open terminal and navigate to the folder on my local desktop that I want to copy to
 <br>
+
 2. use command ‘scp’ with the file path on the server followed by the local file path
 <br>
 ``` 
 		> cd ~/file/path/to/copy/into
 		> scp dmkumar@discover.nccs.nasa.gov:/file/path/to/copy/from ./
 ```
+
 3. Follow prompts to enter log-in tokens/passwords/etc. for remote server
 
 
