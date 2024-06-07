@@ -47,17 +47,17 @@ can compound multiple searches:				`ls <xx>*<xx>*.<EXTENSION>`
 grep [OPTIONS] "<PATTERN_TO_MATCH>" <FILE/DIRECTORIES_TO_SEARCH_IN>
 ```
 | Option | Meaning |
-|:------:|:-------:|
-| -c | | print only a count of the # of lines that match pattern |
-| -l | | list filenames only |
-| -h | | display matched lines but not filenames |
-| -n | | list matched lines and their line numbers |
-| -v | | list lines that *do not* match the pattern |
-| -i | | ignore case when matching |
-| -w | | match the whole word |
-| -A n | | print searched line and nlines *after* the result |
-| -B n | | print searched line and nlines *before* the result |
-| -C n | | print searched line and nlines before and after the result |
+|:------:|:--------|
+| -c | print only a count of the # of lines that match pattern |
+| -l | list filenames only |
+| -h | display matched lines but not filenames |
+| -n | list matched lines and their line numbers |
+| -v | list lines that *do not* match the pattern |
+| -i | ignore case when matching |
+| -w | match the whole word |
+| -A n | print searched line and nlines *after* the result |
+| -B n | print searched line and nlines *before* the result |
+| -C n | print searched line and nlines before and after the result |
 
 Examples:
 <br>
