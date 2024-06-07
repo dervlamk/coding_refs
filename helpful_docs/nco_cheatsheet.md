@@ -1,7 +1,7 @@
 # Using NCO to manipulate nc files
 
 ## Editing a file
-add a variable to an nc file:
+add a variable:
 ```
 ncks -A -v <var_name> infile.nc outfile.nc
 ```
