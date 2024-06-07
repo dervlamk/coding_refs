@@ -1,15 +1,17 @@
 # files:
-remove a file: 		`rm <filename>`
+remove a file: 		`rm -f <FILE_NAME>`
 <br>
-remove a folder: 	`rm -r <folder>`
+remove a folder: 	`rm -r <DIRECTORY_NAME>`
 <br>
-rename a file: 		`mv <oldfilename> <newfilename>`
+rename a file: 		`mv <OLD_FILE_NAME> <NEW_FILE_NAME>`
 <br>
-copy a file: 		`cp <oldfilepath/*> <newfilepath>`
+copy a file: 		`cp <OLD/FILE/PATH/OLD_FILE_NAME.EXT> <NEW/FILE/PATH/NEW_FILE_NAME.EXT>`
 <br>
-make directory: 	`mkdir <directoryname>`
+copy a directory: 		`cp -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
-update file: 		`touch <filename>`
+make directory: 	`mkdir <DIRECTORY_NAME>`
+<br>
+update file: 		`touch <FILE_NAME>`
 
 
 # navigating:
@@ -27,16 +29,43 @@ to quit/kill a jupyter notebook: 	`ctrl+c+c`
 
 
 # searching:
+
+## viewing files and subdirectories within a directory
 list all contents of a directory: 			`ls`
 <br> 
 list directory contents, including hidden files: 	`ls -a`
 <br>
-look for files with a specific file extension: 		`ls *.<extension>`
+look for files with a specific file extension: 		`ls *.<EXTENSION>`
 files that start with a specific phrase: 		`ls <xx>*`
 <br>
 files that contain a specific phrase: 			`ls *<xx>*`
 <br>
-can compound multiple searches:				`ls <xx>*<xx>*.<extension>`
+can compound multiple searches:				`ls <xx>*<xx>*.<EXTENSION>`
+
+## searching for patterns within files/directories: 
+```
+grep [OPTIONS] "<PATTERN_TO_MATCH>" <FILE/DIRECTORIES_TO_SEARCH_IN>
+```
+| Option | Meaning |
+|:------:|:-------:|
+| -c | | print only a count of the # of lines that match pattern |
+| -l | | list filenames only |
+| -h | | display matched lines but not filenames |
+| -n | | list matched lines and their line numbers |
+| -v | | list lines that *do not* match the pattern |
+| -i | | ignore case when matching |
+| -w | | match the whole word |
+| -A n | | print searched line and nlines *after* the result |
+| -B n | | print searched line and nlines *before* the result |
+| -C n | | print searched line and nlines before and after the result |
+
+Examples:
+<br>
+display filenames that contain a given string/pattern: `grep -l "<PATTERN_TO_MATCH>" *`
+<br>
+get line numbers that contain a given string in a specific file: `grep -n "<PATTERN_TO_MATCH>" <FILE_NAME>`
+<br>
+search for a string, ignoring case, across all files of a certain type: `grep -i -n <PATTERN_TO_MATCH> *.<EXT>`
 
 
 # Copy file from a server onto desktop:
@@ -48,6 +77,19 @@ can compound multiple searches:				`ls <xx>*<xx>*.<extension>`
 ```
 3. Follow prompts to enter log-in tokens/passwords/etc. for remote server
 
+<br>
+
+To copy all files with a certain extension within a directory, need to use single quotation marks around path:
+```
+scp dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/*.<EXT>' ./
+```
+
+<br>
+
+To copy an entire directory, need to specify recursive copy:
+```
+scp -r dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/' ./
+```
 
 # Misc. Info
 to quit/kill current command: 		`ctrl+c`
