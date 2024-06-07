@@ -62,7 +62,7 @@ grep [OPTIONS] "<PATTERN_TO_MATCH>" <FILE/DIRECTORIES_TO_SEARCH_IN>
 | -B n | print searched line and nlines *before* the result |
 | -C n | print searched line and nlines before and after the result |
 
-Examples:
+**Examples:**
 <br>
 display filenames that contain a given string/pattern: `grep -l "<PATTERN_TO_MATCH>" *`
 <br>
