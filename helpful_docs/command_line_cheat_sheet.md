@@ -14,6 +14,7 @@ make directory: 	`mkdir <DIRECTORY_NAME>`
 update file: 		`touch <FILE_NAME>`
 
 
+
 # navigating:
 go back 1 folder in a directory: 	`cd ..`
 <br>
@@ -26,6 +27,7 @@ reference home folder: 			`~/`
 see current file path: 			`pwd`
 <br>
 to quit/kill a jupyter notebook: 	`ctrl+c+c`
+
 
 
 # searching:
@@ -68,6 +70,7 @@ get line numbers that contain a given string in a specific file: `grep -n "<PATT
 search for a string, ignoring case, across all files of a certain type: `grep -i -n <PATTERN_TO_MATCH> *.<EXT>`
 
 
+
 # Copy file from a server onto desktop:
 1. Open terminal and navigate to the folder on my local desktop that I want to copy to
 2. use command ‘scp’ with the file path on the server followed by the local file path
@@ -91,6 +94,8 @@ To copy an entire directory, need to specify recursive copy:
 scp -r dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/' ./
 ```
 
+
+
 # Misc. Info
 to quit/kill current command: 		`ctrl+c`
 <br>
@@ -105,6 +110,7 @@ delete from cursor to start of line: 	`ctrl+u`
 absolute path - universal
 <br>
 relative path - points at a path based on current directory
+
 
 
 # Vim editor
@@ -130,6 +136,8 @@ delete all instances of a pattern: 			`:%s/<string>//g`
 <br>
 delete all instances of a pattern with confirmation: 	`:%s/<string>//gc`
 <br>
+
+
 
 # emacs editor
 save: `ctrl+x+s`
