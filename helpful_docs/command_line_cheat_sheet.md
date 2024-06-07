@@ -1,18 +1,28 @@
 # files:
 remove a file: 		rm <filename>
+<br>
 remove a folder: 	rm -r <folder>
+<br>
 rename a file: 		mv <oldfilename> <newfilename>
+<br>
 copy a file: 		cp <oldfilepath/*> <newfilepath>
+<br>
 make directory: 	mkdir <directoryname>
+<br>
 update file: 		touch <filename>
 
 
 # navigating:
 go back 1 folder in a directory: 	cd ..
+<br>
 go back multiple folders: 		cd ../../..
+<br>
 reference current directory: 		./
+<br>
 reference home folder: 			~/
+<br>
 see current file path: 			pwd
+<br>
 to quit/kill a jupyter notebook: 	ctrl+c+c
 
 
