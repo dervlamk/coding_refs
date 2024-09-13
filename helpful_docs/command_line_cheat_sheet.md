@@ -27,6 +27,10 @@ reference home folder: 			`~/`
 <br>
 see current file path: 			`pwd`
 <br>
+create a symbolic link: `ln -s /path/to/file /path/to/symlink`
+<br>
+edit a symbolic link: `ln -sf /path/to/file /path/to/symlink`
+<br>
 to quit/kill a jupyter notebook: 	`ctrl+c+c`
 <br>
 <br>
