@@ -78,7 +78,7 @@ search for a string, ignoring case, across all files of a certain type: `grep -i
 2. use command ‘scp’ with the file path on the server followed by the local file path
 ``` 
 > cd ~/file/path/to/copy/into
-> scp dmkumar@discover.nccs.nasa.gov:/file/path/to/copy/from ./
+> scp username@server.account.ext:/file/path/to/copy/from ./
 ```
 3. Follow prompts to enter log-in tokens/passwords/etc. for remote server
 
@@ -86,14 +86,14 @@ search for a string, ignoring case, across all files of a certain type: `grep -i
 
 To copy all files with a certain extension within a directory, need to use single quotation marks around path:
 ```
-scp dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/*.<EXT>' ./
+scp username@server.account.ext:'/file/path/to/copy/from/*.<EXT>' ./
 ```
 
 <br>
 
 To copy an entire directory, need to specify recursive copy:
 ```
-scp -r dmkumar@discover.nccs.nasa.gov:'/file/path/to/copy/from/' ./
+scp -r username@server.account.ext:'/file/path/to/copy/from/' ./
 ```
 <br>
 <br>
