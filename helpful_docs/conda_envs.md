@@ -72,3 +72,9 @@ List only the packages you explicitly installed to an environment
 conda activate <env_name>
 conda env export --from-history
 ```
+
+Check if a specific package is installed to an environment
+```
+conda activate <env_name>
+conda list '<package_name>'
+```
