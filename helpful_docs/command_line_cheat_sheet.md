@@ -1,4 +1,37 @@
-# files:
+# navigating:
+go back 1 folder in a directory: 	`cd ..`
+<br>
+go back multiple folders: 		`cd ../../..`
+<br>
+reference current directory: 		`./`
+<br>
+reference home folder: 			`~/`
+<br>
+see current file path: 			`pwd`
+<br>
+create a symbolic link: `ln -s /path/to/file /path/to/symlink`
+<br>
+edit a symbolic link: `ln -sf /path/to/file /path/to/symlink`
+<br>
+note that an *absolute path* is universal while a *relative path* points at a path based on the current directory. This distinction is particularly important to remember when using symlinks.
+<br>
+<br>
+move cursor to start of line: 		`ctrl+a`
+<br>
+move cursor to end of line: 		`ctrl+e`
+<br>
+delete from cursor to end of line: 	`ctrl+k`
+<br>
+delete from cursor to start of line: 	`ctrl+u`
+<br>
+to quit/kill current command: 		`ctrl+c`
+<br>
+to quit/kill a jupyter notebook: 	`ctrl+c+c`
+<br>
+<br>
+<br>
+
+# file operations:
 remove a file: 		`rm -f <FILE_NAME>`
 <br>
 remove a folder: 	`rm -r <DIRECTORY_NAME>`
@@ -16,28 +49,8 @@ update file: 		`touch <FILE_NAME>`
 <br>
 <br>
 
-# navigating:
-go back 1 folder in a directory: 	`cd ..`
-<br>
-go back multiple folders: 		`cd ../../..`
-<br>
-reference current directory: 		`./`
-<br>
-reference home folder: 			`~/`
-<br>
-see current file path: 			`pwd`
-<br>
-create a symbolic link: `ln -s /path/to/file /path/to/symlink`
-<br>
-edit a symbolic link: `ln -sf /path/to/file /path/to/symlink`
-<br>
-to quit/kill a jupyter notebook: 	`ctrl+c+c`
-<br>
-<br>
-<br>
-
 # searching:
-## viewing files and subdirectories within your current directory
+## viewing files and subdirectories within your current directory: ls
 list all contents of a directory: 			`ls`
 <br> 
 list directory contents, including hidden files: 	`ls -a`
@@ -129,25 +142,8 @@ scp -r username@server.account.ext:'/file/path/to/copy/from/' ./
 <br>
 <br>
 
-# Misc. Info
-to quit/kill current command: 		`ctrl+c`
-<br>
-move cursor to start of line: 		`ctrl+a`
-<br>
-move cursor to end of line: 		`ctrl+e`
-<br>
-delete from cursor to end of line: 	`ctrl+k`
-<br>
-delete from cursor to start of line: 	`ctrl+u`
-<br>
-absolute path - universal
-<br>
-relative path - points at a path based on current directory
-<br>
-<br>
-<br>
-
-# Vim editor
+# File Editors
+## Vim
 *(This editor opens files in read-only mode)*
 <br>
 to edit the file, type: 				`i`
@@ -171,7 +167,7 @@ delete all instances of a pattern: 			`:%s/<string>//g`
 delete all instances of a pattern with confirmation: 	`:%s/<string>//gc`
 <br>
 
-### Modify default settings
+**Modify default settings**
 ```
 # create a .vimrc file in your home directory
 touch ~/.vimrc
@@ -181,9 +177,8 @@ echo "set tabstop=4 shiftwidth=4" >> ~/.vimrc
 ```
 <br>
 <br>
-<br>
 
-# emacs editor
+## emacs
 save: `ctrl+x+s`
 <br>
 exit: `ctrl+x+c`
