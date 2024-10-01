@@ -37,7 +37,7 @@ to quit/kill a jupyter notebook: 	`ctrl+c+c`
 <br>
 
 # searching:
-## viewing files and subdirectories within a directory
+## viewing files and subdirectories within your current directory
 list all contents of a directory: 			`ls`
 <br> 
 list directory contents, including hidden files: 	`ls -a`
@@ -48,8 +48,33 @@ files that start with a specific phrase: 		`ls <xx>*`
 files that contain a specific phrase: 			`ls *<xx>*`
 <br>
 can compound multiple searches:				`ls <xx>*<xx>*.<EXTENSION>`
+<br>
 
-## searching for patterns within files/directories: 
+## searching for patterns in file and directory names: find
+```
+find <PATH/TO/DATA/> [OPTIONS] "<PATTERN_TO_MATCH>"
+```
+| Option | Meaning | Example |
+|:------:|:--------|:--------|
+| -type | search only for files (f) or directories (d) | find ./ -type f |
+| -name | strings or extensions to match | find ./ -name "*.nc" |
+| -not -name | find all files/dirs that DO NOT match strings/extensions | find ./ -not -name "*.nc" |
+| -or | combine searches | find ./ -name "*.nc" -or -name "*.txt" |
+| -maxdepth | set max number of levels to descend | find ./ -maxdepth 2 -name "*.nc" |
+
+The default response of a find function is to print the matching values, but, you can perform other operations on the results:
+| Option | Meaning | Example |
+|:------:|:--------|:--------|
+| -delete | permanently remove matching files/dirs | find ./ -type f -name "*~" -delete |
+| -exec | perform unlimited operations on matching files/dirs | find ./ -name "*.nc" -exec mv {} <NEW/PATH/> \; |
+
+Can combine the find function to customize what is printed:
+<br>
+to list the matching files in sorted order: `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V`
+<br>
+sort the matching files but show only the last 3: `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V | tail -3`
+
+## searching for patterns within files/directories: grep
 ```
 grep [OPTIONS] "<PATTERN_TO_MATCH>" <FILE/DIRECTORIES_TO_SEARCH_IN>
 ```
@@ -144,10 +169,12 @@ delete all instances of a pattern: 			`:%s/<string>//g`
 <br>
 delete all instances of a pattern with confirmation: 	`:%s/<string>//gc`
 <br>
-## Modify default settings
+
+### Modify default settings
 ```
 # create a .vimrc file in your home directory
 touch ~/.vimrc
+
 # set tabstop and shiftwidth preferences
 echo "set tabstop=4 shiftwidth=4" >> ~/.vimrc
 ```
