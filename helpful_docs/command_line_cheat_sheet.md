@@ -8,12 +8,7 @@ reference current directory: 		`./`
 reference home folder: 			`~/`
 <br>
 see current file path: 			`pwd`
-<br>
-create a symbolic link: `ln -s /path/to/file /path/to/symlink`
-<br>
-edit a symbolic link: `ln -sf /path/to/file /path/to/symlink`
-<br>
-note that an *absolute path* is universal while a *relative path* points at a path based on the current directory. This distinction is particularly important to remember when using symlinks.
+
 <br>
 <br>
 move cursor to start of line: 		`ctrl+a`
@@ -31,20 +26,33 @@ to quit/kill a jupyter notebook: 	`ctrl+c+c`
 <br>
 <br>
 
-# file operations:
-remove a file: 		`rm -f <FILE_NAME>`
-<br>
-remove a folder: 	`rm -r <DIRECTORY_NAME>`
+# operating on files and directories:
+create or update a file: 		`touch <FILE_NAME>`
+(if the file does not already exist, this command will create the file. If it does exist, it will refresh the file)
 <br>
 rename a file: 		`mv <OLD_FILE_NAME> <NEW_FILE_NAME>`
 <br>
 copy a file: 		`cp <OLD/FILE/PATH/OLD_FILE_NAME.EXT> <NEW/FILE/PATH/NEW_FILE_NAME.EXT>`
 <br>
+move a file to different directory:        `mv <OLD/FILE/PATH/OLD_FILE_NAME.EXT> <NEW/FILE/PATH/>`
+<br>
+remove a file: 		`rm -f <FILE_NAME>`
+<br>
+<br>
+make a new directory: 	`mkdir <DIRECTORY_NAME>`
+<br>
 copy a directory: 		`cp -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
-make directory: 	`mkdir <DIRECTORY_NAME>`
+move a directory:       `mv -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
-update file: 		`touch <FILE_NAME>`
+remove a folder: 	`rm -r <DIRECTORY_NAME>`
+<br>
+<br>
+create a symbolic link: `ln -s /path/to/file /path/to/symlink`
+<br>
+edit a symbolic link: `ln -sf /path/to/file /path/to/symlink`
+<br>
+(note that an *absolute path* is universal while a *relative path* points at a path based on the current directory. This distinction is particularly important to remember when using symlinks)
 <br>
 <br>
 <br>
