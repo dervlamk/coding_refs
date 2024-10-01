@@ -60,15 +60,15 @@ use command 'scp' with the file path on the server followed by the local file pa
 ``` 
 > scp username@server.account.ext:/file/path/to/copy/from/<filename> /file/path/to/copy/into/<optional_new_filename>
 ```
-<br>
+
 To copy all files with a certain extension within a directory, need to use single quotation marks around path:
 ```
-scp username@server.account.ext:'/file/path/to/copy/from/*.<EXT>' /file/path/to/copy/into
+> scp username@server.account.ext:'/file/path/to/copy/from/*.<EXT>' /file/path/to/copy/into
 ```
-<br>
+
 To copy an entire directory, need to specify recursive copy:
 ```
-scp -r username@server.account.ext:'/file/path/to/copy/from/' /file/path/to/copy/into
+> scp -r username@server.account.ext:'/file/path/to/copy/from/' /file/path/to/copy/into
 ```
 <br>
 <br>
