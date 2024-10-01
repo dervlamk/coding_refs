@@ -68,11 +68,11 @@ The default response of a find function is to print the matching values, but, yo
 | -delete | permanently remove matching files/dirs | `find ./ -type f -name "*~" -delete` |
 | -exec | perform unlimited operations on matching files/dirs | `find ./ -name "*.nc" -exec mv {} <NEW/PATH/> \;` |
 
-Can combine the find function to customize what is printed:
+**You can also combine the find function to customize what is printed:**
 <br>
-to list the matching files in sorted order: `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V`
+to list the matching files in sorted order:        `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V`
 <br>
-sort the matching files but show only the last 3: `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V | tail -3`
+sort the matching files but show only the last 3:  `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V | tail -3`
 <br>
 
 ## searching for patterns within files/directories: grep
