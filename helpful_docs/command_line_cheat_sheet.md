@@ -144,6 +144,14 @@ delete all instances of a pattern: 			`:%s/<string>//g`
 <br>
 delete all instances of a pattern with confirmation: 	`:%s/<string>//gc`
 <br>
+## Modify default settings
+```
+# create a .vimrc file in your home directory
+touch ~/.vimrc
+# set tabstop and shiftwidth preferences
+echo "set tabstop=4 shiftwidth=4" >> ~/.vimrc
+```
+<br>
 <br>
 <br>
 
