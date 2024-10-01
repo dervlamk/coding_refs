@@ -56,23 +56,24 @@ find <PATH/TO/DATA/> [OPTIONS] "<PATTERN_TO_MATCH>"
 ```
 | Option | Meaning | Example |
 |:------:|:--------|:--------|
-| -type | search only for files (f) or directories (d) | find ./ -type f |
-| -name | strings or extensions to match | find ./ -name "*.nc" |
-| -not -name | find all files/dirs that DO NOT match strings/extensions | find ./ -not -name "*.nc" |
-| -or | combine searches | find ./ -name "*.nc" -or -name "*.txt" |
-| -maxdepth | set max number of levels to descend | find ./ -maxdepth 2 -name "*.nc" |
+| -type | search only for files (f) or directories (d) | `find ./ -type f` |
+| -name | strings or extensions to match | `find ./ -name "*.nc"` |
+| -not -name | find all files/dirs that DO NOT match strings/extensions | `find ./ -not -name "*.nc"` |
+| -or | combine searches | `find ./ -name "*.nc" -or -name "*.txt"` |
+| -maxdepth | set max number of levels to descend | `find ./ -maxdepth 2 -name "*.nc"` |
 
 The default response of a find function is to print the matching values, but, you can perform other operations on the results:
 | Option | Meaning | Example |
 |:------:|:--------|:--------|
-| -delete | permanently remove matching files/dirs | find ./ -type f -name "*~" -delete |
-| -exec | perform unlimited operations on matching files/dirs | find ./ -name "*.nc" -exec mv {} <NEW/PATH/> \; |
+| -delete | permanently remove matching files/dirs | `find ./ -type f -name "*~" -delete` |
+| -exec | perform unlimited operations on matching files/dirs | `find ./ -name "*.nc" -exec mv {} <NEW/PATH/> \;` |
 
 Can combine the find function to customize what is printed:
 <br>
 to list the matching files in sorted order: `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V`
 <br>
 sort the matching files but show only the last 3: `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V | tail -3`
+<br>
 
 ## searching for patterns within files/directories: grep
 ```
