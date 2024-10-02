@@ -35,8 +35,9 @@ copy a file: 		`cp <OLD/FILE/PATH/OLD_FILE_NAME.EXT> <NEW/FILE/PATH/NEW_FILE_NAM
 <br>
 move a file to different directory:        `mv <OLD/FILE/PATH/OLD_FILE_NAME.EXT> <NEW/FILE/PATH/>`
 <br>
-remove a file: 		`rm -f <FILE_NAME>`
+remove a file: 		`rm <FILE_NAME>` (this will result in a prompt asking to confirm you want to delete)
 <br>
+remove a file without prompt:       `rm -f <FILE_NAME>`
 <br>
 make a new directory: 	`mkdir <DIRECTORY_NAME>`
 <br>
@@ -44,8 +45,9 @@ copy a directory: 		`cp -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
 move a directory:       `mv -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
-remove a folder: 	`rm -r <DIRECTORY_NAME>`
+remove a directory and contents: 	`rm -r <DIRECTORY_NAME>` (this will generate a prompt asking you to confirm delete for everything within the directory)
 <br>
+remove a directory and contents without prompt:     `rm -rf <DIRECTORY_NAME>`
 <br>
 create a symbolic link: `ln -s /path/to/file /path/to/symlink`
 <br>
