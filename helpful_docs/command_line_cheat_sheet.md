@@ -27,6 +27,7 @@ to quit/kill a jupyter notebook: 	`ctrl+c+c`
 
 # operating on files and directories:
 create or update a file: 		`touch <FILE_NAME>`
+<br>
 (if the file does not already exist, this command will create the file. If it does exist, it will refresh the file)
 <br>
 
@@ -39,8 +40,9 @@ copy a file: 		`cp <OLD/FILE/PATH/OLD_FILE_NAME.EXT> <NEW/FILE/PATH/NEW_FILE_NAM
 move a file to different directory:        `mv <OLD/FILE/PATH/OLD_FILE_NAME.EXT> <NEW/FILE/PATH/>`
 <br>
 
-remove a file: 		`rm <FILE_NAME>` (this will result in a prompt asking to confirm you want to delete)
+remove a file: 		`rm <FILE_NAME>`
 <br>
+(this will result in a prompt asking to confirm you want to delete)
 
 remove a file without prompt:       `rm -f <FILE_NAME>`
 <br>
@@ -55,8 +57,9 @@ copy a directory: 		`cp -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 move a directory:       `mv -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
 
-remove a directory and contents: 	`rm -r <DIRECTORY_NAME>` (this will generate a prompt asking you to confirm delete for everything within the directory)
+remove a directory and contents: 	`rm -r <DIRECTORY_NAME>` 
 <br>
+(this will generate a prompt asking you to confirm delete for everything within the directory)
 
 remove a directory and contents without prompt:     `rm -rf <DIRECTORY_NAME>`
 <br>
