@@ -75,7 +75,7 @@ To copy an entire directory, need to specify recursive copy:
 <br>
 
 # searching:
-## viewing files and subdirectories within your current directory: ls
+## viewing files and subdirectories within your current directory:
 print names and metadata of all content: 	`l`
 <br> 
 list names and metadata of all content, human-readable format: 	`l -h`
@@ -102,7 +102,7 @@ list subdirectory paths and size of all contents within each subdirectory:  `du 
 <br>
 <br>
 
-## searching for patterns in file and directory names: find
+## searching for patterns in file and directory names:
 ```
 find <PATH/TO/DATA/> [OPTIONS] "<PATTERN_TO_MATCH>"
 ```
@@ -127,7 +127,7 @@ to list the matching files in sorted order:        `find <PATH/TO/DATA/> -type f
 sort the matching files but show only the last 3:  `find <PATH/TO/DATA/> -type f -name "*.nc" | sort -V | tail -3`
 <br>
 
-## searching for patterns within files/directories: grep
+## searching for patterns within files/directories:
 ```
 grep [OPTIONS] "<PATTERN_TO_MATCH>" <FILE/DIRECTORIES_TO_SEARCH_IN>
 ```
