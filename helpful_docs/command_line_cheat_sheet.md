@@ -198,6 +198,10 @@ delete all instances of a pattern: 			`:%s/<string>//g`
 <br>
 delete all instances of a pattern with confirmation: 	`:%s/<string>//gc`
 <br>
+jump to bottom of file:             `esc + shift + g`
+<br>
+jump to top of file:                `gg`
+<br>
 
 **Modify default settings**
 ```
