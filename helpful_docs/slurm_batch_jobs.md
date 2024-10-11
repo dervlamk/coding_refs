@@ -44,7 +44,7 @@ to run: `sbatch ./<RUN_BATCH_JOB_SCRIPT_NAME>.sh`
 
 ## Checking on jobs
 
-see status of jobs: `qstat -u dmkumar`
+see status of jobs: `qstat -u <USERNAME>`
 <br>
 get information about a job: `qrsf <JOB_ID>`
 <br>
