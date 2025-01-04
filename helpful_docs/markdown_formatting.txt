@@ -30,7 +30,7 @@ _underscore_
 
 
 ### +++ CODE BLOCKS +++ ###
-` <in-line codde span> `
+` <in-line code span> `
 
 ```
 <block of code>
@@ -39,6 +39,16 @@ _underscore_
 ```python
 <block of python code>
 ```
+
+
+
+### +++ MATH / EQUATIONS +++ ###
+use $$ or $``$ delimiters for in-line equations:
+$<math>$
+$`<math>`$
+
+use $$ to write a math expression as a block on a new line:
+$$<block_of_math>$$
 
 
 
