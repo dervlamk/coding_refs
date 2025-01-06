@@ -11,8 +11,14 @@ delete a variable:
 ncks -O -x -v <var> in.nc out.nc
 ```
 
+## Resampling data
+Resample daily data to monthly with cdo
+```
+cdo monmean in_daily.nc out_monthly.nc
+```
+
 ## Manipulating variables
-Calculating Monthly Climatologies
+Calculating Monthly Climatologies with nco
 ```
 ncra -F -d time,1,-1,12 prec_2650-2999.E2pt1_PIctrl_restart.nc prec_mean_JAN.nc
 ncra -F -d time,2,-1,12 prec_2650-2999.E2pt1_PIctrl_restart.nc prec_mean_FEB.nc
