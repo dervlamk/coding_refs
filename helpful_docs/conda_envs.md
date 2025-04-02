@@ -53,6 +53,12 @@ conda activate <env_name>
 conda install -c conda-forge <package_name>
 ```
 
+Though it might be worthwhile specifying the install channel to be the same for an environment, a la:
+```
+conda config --env --add channels conda-forge
+conda config --env --set channel_priority strict
+```
+
 Uninstall a package from an environment
 ```
 conda remove -n <env_name> <package_name>
