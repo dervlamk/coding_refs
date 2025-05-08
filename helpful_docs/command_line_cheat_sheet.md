@@ -169,7 +169,7 @@ display filenames that contain a given string/pattern: `grep -l "<PATTERN_TO_MAT
 <br>
 get line numbers that contain a given string in a specific file: `grep -n "<PATTERN_TO_MATCH>" <FILE_NAME>`
 <br>
-search for a string, ignoring case, across all files of a certain type: `grep -i -n <PATTERN_TO_MATCH> *.<EXT>`
+search for a string, ignoring case, across all files of a certain type: `grep -i -n "<PATTERN_TO_MATCH>" *.<EXT>`
 <br>
 <br>
 <br>
