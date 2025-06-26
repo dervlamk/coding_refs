@@ -35,6 +35,10 @@ delete global attributes:
 ```
 ncatted -h -a history,global,d,, flor.ctrl.precip.nc
 ```
+add global attributes:
+```
+ncatted -O -h -a <new_attr_name>,global,o,c,"<new_attr_content>" file.nc
+```
 
 renaming/adding variable attributes
 ```
