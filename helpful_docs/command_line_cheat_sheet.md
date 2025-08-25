@@ -202,6 +202,10 @@ jump to bottom of file:             `esc + shift + g`
 <br>
 jump to top of file:                `gg`
 <br>
+delete everything from cursor position to start of line: 			`ctrl+u`
+<br>
+delete a block of text:    `v V (then scroll down to the start of the last line you want to delete) d`
+<br> 
 
 **Modify default settings**
 ```
