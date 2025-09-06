@@ -213,7 +213,7 @@ def get_settings(field=None, diff=False):
             vmax=0.05
             lvls=21
     
-    if field in ['lh_flux', 'LH', 'lhf']:
+    if field in ['lh_flux', 'lhflx', 'LH', 'lhf']:
         if diff==False:
             cmap=cmocean.cm.amp
             vmin=0
@@ -225,7 +225,7 @@ def get_settings(field=None, diff=False):
             vmax=50
             lvls=21
     
-    if field in ['sh_flux', 'SH', 'shf']:
+    if field in ['sh_flux', 'shflx', 'SH', 'shf']:
         if diff==False:
             cmap=cm.RdBu_r
             vmin=-100
@@ -244,7 +244,7 @@ def get_settings(field=None, diff=False):
             vmax=100
             lvls=21
         if diff==True:
-            cmap=cmocean.cm.diff
+            cmap=cmocean.cm.diff_r
             vmin=-20
             vmax=20
             lvls=21

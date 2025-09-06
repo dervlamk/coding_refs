@@ -174,16 +174,17 @@ def custom_map(var, season='ann', vmin=None, vmax=None, scale=None, cmap=None, c
         vn=vmin*(10**scale)
         vx=vmax*(10**scale)
         n_lvls = 2*(vx-vn)+1
+        if n_lvls<=7:
+            n_lvls=(n_lvls*2)+1
         levels = np.linspace(vmin, vmax, int(n_lvls))
         norm = mpl.colors.BoundaryNorm(levels, cmap.N)
-        cf = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
-        ax.pcolormesh(lons, lats, var_avg, cmap=cmap, vmin=vmin, vmax=vmax, transform=trans)
+        cf = ax.pcolormesh(lons, lats, var_avg, cmap=cmap, norm=norm, transform=trans)
     else:
         if vmin==None:
             vmin=var_avg.min()
         if vmax==None:
             vmax=var_avg.max()
-        cf = ax.pcolormesh(lons, lats, var_avg, cmap=cmap, vmin=vmin, vmax=vmax, transform=trans)
+        cf = ax.pcolormesh(lons, lats, var_avg, cmap=cmap, norm=norm, transform=trans)
     
     ### +++ ADD FIG LABEL +++ ###
     if label==None:
@@ -284,7 +285,7 @@ def wind_vectors(u, v, season='ann', color='k', scalef=15, w=0.005, skip_n=2, ke
 
 ###
 
-def plot_field_diff(var1, var2, season='ann',
+def plot_field_diff(var1, var2, season=None,
                     vmin_fld=None, vmax_fld=None, cmap_fld=None,
                     vmin_diff=None, vmax_diff=None, cmap_diff=None,
                     mask=None, boundaries=None, cl=None,
@@ -299,17 +300,21 @@ def plot_field_diff(var1, var2, season='ann',
         proj = ccrs.PlateCarree()
     fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(20,4), subplot_kw={'projection': proj})
     fig.subplots_adjust(bottom=0.05, top=0.95)
-    # add figure title
-    #plt.gcf().text(.5, .85, (var1.attrs['long_name']+' ('+season+')'), fontsize=16, fontweight='bold', ha='center', va='center')
-    plt.suptitle((var1.attrs['long_name']+' ('+season+')'), fontsize=16, fontweight='bold', ha='center', va='center')
 
     ## get var info
     lons, lats = get_xy_coords(var1) # get lat & lon coords without having to know coordinate names
-    mons = get_season(season=season) # index months to average over based on season var
-    # find seasonal or annual var mean
-    var_avg1 = var1[mons].mean(dim='month', keep_attrs=True) 
-    var_avg2 = var2[mons].mean(dim='month', keep_attrs=True) 
-    
+
+    if season != None:
+        mons = get_season(season=season) # index months to average over based on season var
+        # find seasonal or annual var mean
+        var_avg1 = var1[mons].mean(dim='month', keep_attrs=True) 
+        var_avg2 = var2[mons].mean(dim='month', keep_attrs=True) 
+        plt.suptitle((var1.attrs['long_name']+' ('+season+')'), fontsize=16, fontweight='bold', ha='center', va='center')
+    else:
+        var_avg1 = var1
+        var_avg2 = var2
+        plt.suptitle((var1.attrs['long_name']), fontsize=16, fontweight='bold', ha='center', va='center')
+
     ## colormamp info
     if ((cmap_fld==None) and (var_avg1.min()<0)):
         cmap_fld=plt.colormaps['RdBu']
@@ -325,11 +330,10 @@ def plot_field_diff(var1, var2, season='ann',
         n_lvls_fld = 2*(vx_fld-vn_fld)+1
         levels_fld = np.linspace(vn_fld, vx_fld, n_lvls_fld)
         norm_fld = mpl.colors.BoundaryNorm(levels_fld, cmap_fld.N)
-        cf_fld = mpl.cm.ScalarMappable(norm=norm_fld, cmap=cmap_fld)
-        ax[0].pcolormesh(lons, lats, var_avg1, cmap=cmap_fld, vmin=vn_fld, vmax=vx_fld, transform=trans)
+        cf_fld = ax[0].pcolormesh(lons, lats, var_avg1, cmap=cmap_fld, norm=norm_fld, transform=trans)
         t=ax[0].annotate(var1_name, xy=(0.015, 0.025), xycoords='axes fraction', annotation_clip=False, fontsize=10, fontweight='bold', ha='left', va='bottom')
         t.set_bbox(dict(facecolor='white', alpha=1, edgecolor='k'))
-        ax[1].pcolormesh(lons, lats, var_avg2, cmap=cmap_fld, vmin=vn_fld, vmax=vx_fld, transform=trans)
+        ax[1].pcolormesh(lons, lats, var_avg2, cmap=cmap_fld, norm=norm_fld, transform=trans)
         t=ax[1].annotate(var2_name, xy=(0.015, 0.025), xycoords='axes fraction', annotation_clip=False, fontsize=10, fontweight='bold', ha='left', va='bottom')
         t.set_bbox(dict(facecolor='white', alpha=1, edgecolor='k'))
     else:
@@ -352,8 +356,7 @@ def plot_field_diff(var1, var2, season='ann',
         n_lvls_diff = 2*(vx_diff-vn_diff)+1
         levels_diff = np.linspace(vn_diff, vx_diff, n_lvls_diff)
         norm_diff = mpl.colors.BoundaryNorm(levels_diff, cmap_diff.N)
-        cf_diff = mpl.cm.ScalarMappable(norm=norm_diff, cmap=cmap_diff)
-        ax[2].pcolormesh(lons, lats, var_diff, cmap=cmap_diff, vmin=vn_diff, vmax=vx_diff, transform=trans)
+        cf_diff = ax[2].pcolormesh(lons, lats, var_diff, cmap=cmap_diff, norm=norm_diff, transform=trans)
         t=ax[2].annotate(f'{var2_name}$-${var1_name}', xy=(0.015, 0.025), xycoords='axes fraction', annotation_clip=False, fontsize=10, fontweight='bold', ha='left', va='bottom')
         t.set_bbox(dict(facecolor='white', alpha=1, edgecolor='k'))
     else:
