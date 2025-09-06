@@ -54,6 +54,17 @@ make a new directory: 	`mkdir <DIRECTORY_NAME>`
 copy a directory: 		`cp -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
 
+copy a directory, preserve symlinks:  `rsync -av </OLD/DIRECTORY/PATH/> </NEW/DIRECTORY/PATH/>`
+<br>
+
+copy a directory, dereference symlinks and get real files: `rsync -avL </OLD/DIRECTORY/PATH/> </NEW/DIRECTORY/PATH/>`
+<br>
+(this will give you a real copy of the file in the destination)
+<br>
+
+copy a directory, ignore symlinks: `rsync -av --no-links </OLD/DIRECTORY/PATH/> </NEW/DIRECTORY/PATH/>`
+<br>
+
 move a directory:       `mv -r <OLD/DIRECTORY/PATH/> <NEW/DIRECTORY/PATH>`
 <br>
 
