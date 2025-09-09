@@ -21,3 +21,4 @@ dependencies:
   - numpy-indexed
   - rioxarray
   - rasterio
+  - cf_xarray

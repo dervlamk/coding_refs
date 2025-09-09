@@ -3,6 +3,7 @@ import sys
 import xarray as xr
 import netCDF4 as nc
 import numpy as np
+import cf-xarray
 import metpy.calc as mp
 from datetime import datetime
 
@@ -44,14 +45,57 @@ def get_season(season='ann'):
         pass
     return mons
 
+def lonFlip(var):
+    """
+    Convert longitude values from the -180:180 to 0:360 convention or vice versa.
+
+    ** Works for both global data due to auto-detection of longitude convention **
+    More efficient than rolling: only relabels coordinates + sorts.
+
+    Parameters
+    ----------
+    var : xr.DataArray or xr.Dataset
+    """
+
+    #=== Get var info
+    lon_name=var.cf.axes["X"][0]    # find longitude axis and store coordinate name
+    lon=var[lon_name]               # extract lon array
+
+    #=== Detect current longitude convention and wrap values
+    if lon.min() < 0:
+        # -180:180 -> 0:360
+        new_lon = lon % 360
+        target_range = "0:360"
+    else:
+        # 0:360 -> -180:180
+        new_lon = ((lon + 180) % 360) - 180
+        target_range = "-180:180"
+
+    #=== Assign and sort
+    var = var.assign_coords({lon_name: new_lon}).sortby(lon_name)
+
+    #=== Add history
+    timestamp = datetime.now().strftime("%B %d, %Y, %r")
+    hist_message = f"wrapped longitudes to {target_range} on {timestamp}"
+    if isinstance(var, xr.DataArray):
+        var.attrs["history"] = hist_message
+    else: # Dataset
+        var.attrs["history"] = var.attrs.get("history","") + "\n" + hist_message
+
+    return var
+
+
 def longitude_flip(var):
-    """ Convert longitude values from the -180:180 to 0:360 convention or vice versa.
+    """
+    Convert longitude values from the -180:180 to 0:360 convention or vice versa.
         
-        ** Only works for global data. Do not apply to data with a clipped longitude range **
-        
-        Parameters
-        ----------
-        var : Data Array
+    ** Only works for global data. Do not apply to data with a clipped longitude range **
+    ** Is computationally expensive because it forces a particular layout of the data in memory **
+    ** Probably not optimal to use for most scenarios **
+
+    Parameters
+    ----------
+    var : Data Array
     """    
     # get var info
     x,_=get_xy_coords(var) # extract original longitude values
