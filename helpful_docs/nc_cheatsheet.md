@@ -35,6 +35,10 @@ remove a singleton dimension (i.e. dimension length = 1):
 ```
 ncwa -a <dim_name> in.nc out.nc
 ```
+re-name a variable:
+```
+ncrename -v <old_var_name>,<new_var_name> in.nc
+```
 
 ## Attributes
 delete global attributes:
@@ -46,7 +50,7 @@ add global attributes:
 ncatted -O -h -a <new_attr_name>,global,o,c,"<new_attr_content>" file.nc
 ```
 
-renaming/adding variable attributes
+re-naming/adding variable attributes
 ```
 ncatted -O -a long_name,toa_lw_all_clim,o,c,"NORTHWARD WIND VELOCITY" satellite_obs.monthly_climatologies.E2.1_grid.Mar2023.nc
 
