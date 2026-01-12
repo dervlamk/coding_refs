@@ -16,6 +16,12 @@ Resample daily data to monthly with cdo
 ```
 cdo monmean in_daily.nc out_monthly.nc
 ```
+Extract a hyperslab of the data specifying coordinate values using nco 
+```
+ncks -d <coordinate_to_slice_along>,<coord_val_min>,<coord_val_max> input.nc output_for_coord_val.nc
+# then remove singleton dimension
+ncwa -a <singleton_coordinate_name> output_for_coord_val.nc output_for_coord_val_squeezed.nc
+```
 
 ## Manipulating variables
 Calculating Monthly Climatologies with nco
